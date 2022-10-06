@@ -1,6 +1,10 @@
 <div class="grid place-items-center gap-2 text-neutral-100">
 	<a href="https://ncatalent.ca/" target="agent">
-		<svg class="m-2 w-12 bg-neutral-100 p-2" viewBox="0 0 323 511" version="1.1"
+		<svg
+			class="m-2 w-12 bg-neutral-100 p-2"
+			viewBox="0 0 323 511"
+			version="1.1"
+			aria-label="Noble Caplan Abrams logo"
 			><defs
 				><filter id="dropshadow" height="130%"
 					><feGaussianBlur in="SourceAlpha" stdDeviation="3" /><feOffset

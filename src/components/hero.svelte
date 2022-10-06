@@ -113,6 +113,7 @@
 	{#if activeSlide > 0}
 		<button
 			type="button"
+			aria-label="Go to previous slide"
 			class="z-10 col-start-1 row-start-1 flex w-16 place-content-center place-items-center text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
 			on:click={previousSlide}
 		>
@@ -127,11 +128,12 @@
 			</svg>
 		</button>
 	{:else}
-		<div class="row-start-1 col-start-1 w-16 sm:w-20 md:w-24 lg:w-28" />
+		<div class="col-start-1 row-start-1 w-16 sm:w-20 md:w-24 lg:w-28" />
 	{/if}
 	{#if activeSlide < slides.length - 1}
 		<button
 			type="button"
+			aria-label="Go to next slide"
 			class="z-10 col-start-3 row-start-1 flex w-16 place-content-center place-items-center text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
 			on:click={nextSlide}
 		>
@@ -146,7 +148,7 @@
 			</svg>
 		</button>
 	{:else}
-		<div class="row-start-1 col-start-3 w-16 sm:w-20 md:w-24 lg:w-28" />
+		<div class="col-start-3 row-start-1 w-16 sm:w-20 md:w-24 lg:w-28" />
 	{/if}
 	<div class="col-start-2 row-start-1 mb-4 flex justify-center self-end">
 		{#each slides as slide, i}
