@@ -68,10 +68,12 @@
 			<div class="grid max-h-fit max-w-fit flex-shrink-0 snap-center transition duration-[600ms]">
 				<picture class="col-start-1 row-start-1">
 					<source
+						class="aspect-16/9"
 						srcset={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg, /images/hero/thomas-fournier-1024x576-${slide.id}.jpg 0.8x, /images/hero/thomas-fournier-768x432-${slide.id}.jpg 0.6x`}
 						media="(min-width: 640px)"
 					/>
 					<img
+						class="aspect-4/6"
 						srcset={`/images/hero/thomas-fournier-640x960-${slide.id}.jpg 640w, /images/hero/thomas-fournier-414x621-${slide.id}.jpg 414w`}
 						src={`/images/hero/thomas-fournier-640x960-${slide.id}.jpg`}
 						alt="Thomas Fournier headshot"
