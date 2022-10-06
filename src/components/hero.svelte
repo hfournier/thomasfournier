@@ -153,6 +153,7 @@
 	<div class="col-start-2 row-start-1 mb-4 flex justify-center self-end">
 		{#each slides as slide, i}
 			<button
+				aria-label="Go to slide {i + 1}"
 				class="z-10 mx-4 h-6 w-12 border-b-2 {activeSlide === i
 					? 'border-neutral-200'
 					: 'border-neutral-400'}"
