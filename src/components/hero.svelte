@@ -69,7 +69,7 @@
 				<picture class="col-start-1 row-start-1">
 					<source
 						class="aspect-16/9"
-						srcset={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg, /images/hero/thomas-fournier-1024x576-${slide.id}.jpg 0.8x, /images/hero/thomas-fournier-768x432-${slide.id}.jpg 0.6x`}
+						srcset={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg 1280w, /images/hero/thomas-fournier-1024x576-${slide.id}.jpg 1024w, /images/hero/thomas-fournier-768x432-${slide.id}.jpg 768w`}
 						media="(min-width: 640px)"
 					/>
 					<img
