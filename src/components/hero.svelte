@@ -65,7 +65,7 @@
 		bind:this={carousel}
 	>
 		{#each slides as slide}
-			<div class="grid max-h-fit max-w-fit flex-shrink-0 snap-center transition duration-[600ms]">
+			<div class="grid max-h-fit flex-shrink-0 snap-center transition duration-[600ms]">
 				<picture class="col-start-1 row-start-1">
 					<source
 						class="aspect-16/9"
