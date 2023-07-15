@@ -7,12 +7,12 @@
 
 	let activeSlide = 0;
 	let skipInterval = false;
-	let carousel;
+	let carousel: HTMLElement;
 
 	function previousSlide() {
 		if (carousel) {
 			--activeSlide;
-			carousel.scroll(carousel.clientWidth * activeSlide, 0);
+			carousel.scrollBy(-carousel.clientWidth, 0);
 			skipInterval = true;
 		}
 	}
@@ -21,7 +21,8 @@
 		// console.log(carousel);
 		if (carousel) {
 			++activeSlide;
-			carousel.scroll(carousel.clientWidth * activeSlide, 0);
+			console.log(carousel.clientWidth, activeSlide);
+			carousel.scrollBy(carousel.clientWidth, 0);
 			skipInterval = true;
 		}
 	}
@@ -29,7 +30,7 @@
 	function gotoSlide(slide) {
 		if (carousel) {
 			activeSlide = slide;
-			carousel.scroll(carousel.clientWidth * activeSlide, 0);
+			carousel.scrollTo(carousel.clientWidth * activeSlide, 0);
 			skipInterval = true;
 		}
 	}
@@ -47,7 +48,7 @@
 			if (carousel) {
 				if (activeSlide === slides.length - 1) {
 					activeSlide = 0;
-					carousel.scroll(0, 0);
+					carousel.scrollTo(0, 0);
 				} else {
 					nextSlide();
 				}
@@ -58,26 +59,44 @@
 
 <svelte:head><title>Thomas Fournier - Actor | Performer | Writer</title></svelte:head>
 
-<div class="group grid grid-cols-[auto_minmax(0,_1fr)_auto]">
+<div class="group grid grid-cols-1 grid-rows-1">
 	<div
-		class="carousel col-start-1 col-end-4 row-start-1 flex touch-auto snap-x overflow-x-auto scroll-smooth"
+		class="carousel col-start-1 row-start-1 flex touch-auto snap-x snap-mandatory overflow-x-hidden scroll-smooth"
 		on:scroll={setActiveSlide}
 		bind:this={carousel}
 	>
 		{#each slides as slide}
-			<div class="grid max-h-fit flex-shrink-0 snap-center transition duration-[600ms]">
+			<div class="grid flex-shrink-0 snap-center transition duration-[600ms]">
 				<picture class="col-start-1 row-start-1">
 					<source
 						class="aspect-16/9"
-						srcset={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg 1280w, /images/hero/thomas-fournier-1024x576-${slide.id}.jpg 1024w, /images/hero/thomas-fournier-768x432-${slide.id}.jpg 768w`}
-						media="(min-width: 640px)"
+						srcset={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg`}
+						media="(min-width: 1025px)"
+					/>
+					<source
+						class="aspect-16/9"
+						srcset={`/images/hero/thomas-fournier-1024x576-${slide.id}.jpg`}
+						media="(min-width: 769px)"
+					/>
+					<source
+						class="aspect-16/9"
+						srcset={`/images/hero/thomas-fournier-768x432-${slide.id}.jpg`}
+						media="(min-width: 641px)"
+					/>
+					<source
+						class="aspect-4/6"
+						srcset={`/images/hero/thomas-fournier-640x960-${slide.id}.jpg`}
+						media="(min-width: 415px)"
+					/>
+					<source
+						class="aspect-4/6"
+						srcset={`/images/hero/thomas-fournier-414x621-${slide.id}.jpg`}
+						media="(max-width: 414px)"
 					/>
 					<img
-						class="aspect-4/6"
-						srcset={`/images/hero/thomas-fournier-640x960-${slide.id}.jpg 640w, /images/hero/thomas-fournier-414x621-${slide.id}.jpg 414w`}
-						src={`/images/hero/thomas-fournier-640x960-${slide.id}.jpg`}
+						class="aspect-16/9"
+						src={`/images/hero/thomas-fournier-1280x720-${slide.id}.jpg`}
 						alt="Thomas Fournier headshot"
-						sizes="100vw"
 					/>
 				</picture>
 				<div
@@ -116,7 +135,7 @@
 		<button
 			type="button"
 			aria-label="Go to previous slide"
-			class="z-10 col-start-1 row-start-1 flex w-16 place-content-center place-items-center text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
+			class="z-10 col-start-1 row-start-1 flex w-16 items-center justify-center justify-self-start text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
 			on:click={previousSlide}
 		>
 			<svg
@@ -129,14 +148,12 @@
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 			</svg>
 		</button>
-	{:else}
-		<div class="col-start-1 row-start-1 w-16 sm:w-20 md:w-24 lg:w-28" />
 	{/if}
 	{#if activeSlide < slides.length - 1}
 		<button
 			type="button"
 			aria-label="Go to next slide"
-			class="z-10 col-start-3 row-start-1 flex w-16 place-content-center place-items-center text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
+			class="z-10 col-start-1 row-start-1 flex w-16 items-center justify-center justify-self-end text-transparent group-hover:bg-neutral-900/30 group-hover:text-neutral-400 sm:w-20 md:w-24 lg:w-28"
 			on:click={nextSlide}
 		>
 			<svg
@@ -149,10 +166,8 @@
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 			</svg>
 		</button>
-	{:else}
-		<div class="col-start-3 row-start-1 w-16 sm:w-20 md:w-24 lg:w-28" />
 	{/if}
-	<div class="col-start-2 row-start-1 mb-4 flex justify-center self-end">
+	<div class="col-start-1 row-start-1 mb-4 flex justify-center self-end">
 		{#each slides as slide, i}
 			<button
 				aria-label="Go to slide {i + 1}"
